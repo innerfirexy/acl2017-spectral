@@ -67,10 +67,11 @@ commoncv3.new = sample(0:(folds-1), length(levels(x.new$dialogue)), replace=TRUE
 
 # Run cross-validation
 # Table 4
-
+# Note: gamma needs to be tuned in order to get the reported results in Table 4
 # Row 5: R&M + PSO + RP
 result5 = crossval(quote(score ~ word.reps * letter.reps * rule.reps * word.total * letter.total * time + PSO*time + time*(peakPSmean + peakPSmedian + peakPSmax)), x.new, 'test',  folds=10, gamma=1, cv=commoncv3.new)
-# 0.2235511
+# gamma=5 => 0.2235511
+# gamma=1 => 0.1248929
 
 # Row 6:
 result6 = crossval(quote(score ~ word.reps * letter.reps * rule.reps * word.total * letter.total * time + PSO*time*(peakPSmean + peakPSmedian + peakPSmax)), x.new, 'test',  folds=10, cv=commoncv3.new)
